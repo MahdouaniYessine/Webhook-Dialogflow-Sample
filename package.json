@@ -1,0 +1,16 @@
+{
+  "name": "zapping",
+  "version": "1.0.0",
+  "description": "Ascolta le tue radio preferite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "author": "APPandAPP Srl",
+  "license": "APPandAPP Srl",
+  "dependencies": {
+    "actions-on-google": "^2.2.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
