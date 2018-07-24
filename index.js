@@ -14,17 +14,23 @@ server.use(bodyParser.urlencoded({
 server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
+  var formData = {key:'rtl',action:6}
+  request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', formData: formData}, function optionalCallback(err, httpResponse, body) {
+    if (err) {
+      return  err;
+    }
+  return res.json(res);
+  });
 
-  return res.json({
-        source: 'test-webhook-zapping',
+  /*return res.json({
+  source: 'test-webhook-zapping',
   "payload": {
     "google": {
       "expectUserResponse": true,
       "richResponse": {
         "items": [{  "simpleResponse": {  "textToSpeech": "Play Radio RTL"}}
-        ,{
-              "mediaResponse": {
-                "mediaType": "AUDIO",
+        ,{"mediaResponse": {
+            "mediaType": "AUDIO",
                 "mediaObjects": [
                   {
                     "name": "RDS",
@@ -46,34 +52,10 @@ server.post('/test', (req, res) => {
       }
     }
   }
-    });
+});*/
 
 });
 
 server.listen((process.env.PORT || 8000), () => {
     console.log("Server is up and running...");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*var formData = {key:'rtl',action:6}
-request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', formData: formData}, function optionalCallback(err, httpResponse, body) {
-  if (err) {
-    return console.error('upload failed:', err);
-  }
-  console.log('Upload successful!  Server responded with:', body);
-});*/
