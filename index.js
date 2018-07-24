@@ -17,16 +17,11 @@ server.post('/test', (req, res) => {
   return res.json({
         fulfillmentText: 'Something went wrong!',
         source: 'test-webhook-zapping',
-        fulfillmentMessages: [ "card":{
-        "title": "card title",
-        "subtitle": "card text",
-        "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-        "buttons": [
-          {
-            "text": "button text",
-            "postback": "https://assistant.google.com/"
-          }
-        ]
+        fulfillmentMessages: [card:{
+        title: 'card title',
+        subtitle: 'card text',
+        imageUri: 'https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png',
+        buttons: [{text: 'button text',  postback: 'https://assistant.google.com/'}]
       }
     }]
     });
