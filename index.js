@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {dialogflow,BasicCard,SimpleResponse,
-  Image,Suggestions,MediaObject} = require('actions-on-google');
+  Image,Suggestions,MediaObject,actionssdk} = require('actions-on-google');
 
 var request = require('request');
 
@@ -15,10 +15,16 @@ server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
 
-        return res.json({
+const app = actionssdk()
+app.intent('test', (conv, input) => {
+  conv.ask(`I didn't understand. Can you tell me something else?`)
+})
+
+
+      /*  return res.json({
             fulfillmentText: 'Something went wrong!',
             source: 'test-webhook-zapping',
-            fulfillmentMessages: [new MediaObject({
+            fulfillmentMessages: [mediaobject:new MediaObject({
               name: 'RTL',
               url: 'http://shoutcast.rtl.it:3010/;mp3',
               image: new Image({
@@ -26,7 +32,8 @@ server.post('/test', (req, res) => {
                 alt: 'Media icon',
               })
             })]
-        });
+        });*/
+
 
 });
 
