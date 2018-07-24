@@ -18,14 +18,14 @@ server.post('/test', (req, res) => {
         return res.json({
             fulfillmentText: 'Something went wrong!',
             source: 'test-webhook-zapping',
-            fulfillmentMessages: new MediaObject({
+            fulfillmentMessages: [new MediaObject({
               name: 'RTL',
               url: 'http://shoutcast.rtl.it:3010/;mp3',
               image: new Image({
                 url: 'http://zappingradioapp.com/images/italia/rtl-102-5.png',
                 alt: 'Media icon',
               })
-            })
+            })]
         });
 
 });
