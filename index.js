@@ -14,24 +14,59 @@ server.use(bodyParser.urlencoded({
 server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
+
   return res.json({
         fulfillmentText: 'Something went wrong!',
         source: 'test-webhook-zapping',
-        fulfillmentMessages: [card:{
-        title: 'card title',
-        subtitle: 'card text',
-        imageUri: 'https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png',
-        buttons: [{text: 'button text',  postback: 'https://assistant.google.com/'}]
+  "payload": {
+    "google": {
+      "expectUserResponse": true,
+      "richResponse": {
+        "items": [
+          {
+            "simpleResponse": {
+              "textToSpeech": "This is a Basic Card:"
+            }
+          },
+          {
+            "basicCard": {
+              "title": "Card Title",
+              "image": {
+                "url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+                "accessibilityText": "Google Logo"
+              },
+              "buttons": [
+                {
+                  "title": "Button Title",
+                  "openUrlAction": {
+                    "url": "https://www.google.com"
+                  }
+                }
+              ],
+              "imageDisplayOptions": "WHITE"
+            }
+          }
+        ]
       }
-    }]
+    }
+  }
     });
-
 
 });
 
 server.listen((process.env.PORT || 8000), () => {
     console.log("Server is up and running...");
 });
+
+
+
+
+
+
+
+
+
+
 
 
 
