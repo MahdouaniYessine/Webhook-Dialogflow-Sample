@@ -1,25 +1,33 @@
-'use strict';
+"use strict";
 
-// Import the Dialogflow module from the Actions on Google client library.
-const {dialogflow,BasicCard,SimpleResponse,
-  Image,Suggestions,MediaObject} = require('actions-on-google');
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const express = require('express')
-const bodyParser = require('body-parser')
+const restService = express();
 
+restService.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 
-// Instantiate the Dialogflow client.
-const app = dialogflow({debug: true});
+restService.use(bodyParser.json());
 
-/*express.post('/test', function(request, response) {
-  conv.ask('Are You Sure?')
-});*/
-
-
-
-
-app.intent('test', conv => {
-  conv.ask('Are You Sure?')
+restService.post("/test", function(req, res) {
+  var speech =
+    req.body.result &&
+    req.body.result.parameters &&
+    req.body.result.parameters.echoText
+      ? req.body.result.parameters.echoText
+      : "Seems like some problem. Speak again.";
+  return res.json({
+    speech: speech,
+    displayText: speech,
+    source: "Zapping Radio +"
+  });
 });
 
-express().use(bodyParser.json(), app).listen(3000);
+
+restService.listen(process.env.PORT || 8000, function() {
+  console.log("Server up and listening");
+});
