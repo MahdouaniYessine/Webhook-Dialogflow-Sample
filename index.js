@@ -37,7 +37,12 @@ server.post('/test', (req, res) => {
                 ]
               }
             }
-        ]
+        ],
+          "suggestions": [
+            {
+              "title": "Pause Radio"
+            }
+          ]
       }
     }
   }
