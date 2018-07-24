@@ -4,10 +4,11 @@
   "description": "Ascolta le tue radio preferite",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "APPandAPP Srl",
-  "license": "APPandAPP Srl",
+  "license": "ISC",
   "dependencies": {
     "actions-on-google": "^2.2.0",
     "body-parser": "^1.18.3",
