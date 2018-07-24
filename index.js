@@ -21,9 +21,7 @@ server.post('/test', (req, res) => {
     if (error) {
       return  res.json(error);
     }
-    var res = JSON.parse(body);
-    return res.json(res);
-
+    return body;
   });
 
   /*return res.json({
