@@ -1,28 +1,25 @@
 'use strict';
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var exps = express();
+// Import the Dialogflow module from the Actions on Google client library.
+const {dialogflow,BasicCard,SimpleResponse,
+  Image,Suggestions,MediaObject} = require('actions-on-google');
 
-const ApiAiApp = require('actions-on-google');
+const express = require('express')
+const bodyParser = require('body-parser')
 
-exps.use(bodyParser.json());
 
-// API.AI actions
-const WELCOME_ACTION = 'input.welcome';
+// Instantiate the Dialogflow client.
+const app = dialogflow({debug: true});
 
-exps.post('/test', function(request, response) {
-  const app = new ApiAiApp({request, response});
-  function greetUser (app) {
-    app.tell("Hello World!");
-  }
+/*express.post('/test', function(request, response) {
+  conv.ask('Are You Sure?')
+});*/
 
-  let actionMap = new Map();
-  actionMap.set(WELCOME_ACTION, greetUser);
 
-  app.handleRequest(actionMap);
+
+
+app.intent('test', conv => {
+  conv.ask('Are You Sure?')
 });
 
-exps.listen((process.env.PORT || 7001), function() {
-    console.log("App up and running, listening.")
-})
+express().use(bodyParser.json(), app).listen(3000);
