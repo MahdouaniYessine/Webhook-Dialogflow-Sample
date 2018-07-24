@@ -16,36 +16,27 @@ server.use(bodyParser.json());
 server.post('/test', (req, res) => {
 
   return res.json({
-        fulfillmentText: 'Something went wrong!',
         source: 'test-webhook-zapping',
   "payload": {
     "google": {
       "expectUserResponse": true,
       "richResponse": {
-        "items": [
-          {
-            "simpleResponse": {
-              "textToSpeech": "This is a Basic Card:"
-            }
-          },
-          {
-            "basicCard": {
-              "title": "Card Title",
-              "image": {
-                "url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "accessibilityText": "Google Logo"
-              },
-              "buttons": [
-                {
-                  "title": "Button Title",
-                  "openUrlAction": {
-                    "url": "https://www.google.com"
+        "items": [{  "simpleResponse": {  "textToSpeech": "Play Radio RTL"}},
+        ,{
+              "mediaResponse": {
+                "mediaType": "AUDIO",
+                "mediaObjects": [
+                  {
+                    "name": "RDS",
+                    "largeImage": {
+                      "url": "http://www.zappingradioapp.com/images/italia/6/11106.png",
+                      "accessibilityText": "Media icon"
+                    },
+                    "contentUrl": "http://46.37.20.205:8000/rdsmp3"
                   }
-                }
-              ],
-              "imageDisplayOptions": "WHITE"
+                ]
+              }
             }
-          }
         ]
       }
     }
