@@ -16,21 +16,20 @@ server.use(bodyParser.json());
 server.post('/test', (req, res) => {
   return res.json({
         fulfillmentText: 'Something went wrong!',
-        source: 'test-webhook-zapping'
+        source: 'test-webhook-zapping',
+        fulfillmentMessages: [ "card":{
+        "title": "card title",
+        "subtitle": "card text",
+        "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+        "buttons": [
+          {
+            "text": "button text",
+            "postback": "https://assistant.google.com/"
+          }
+        ]
+      }
+    }]
     });
-
-      /*  return res.json({
-            fulfillmentText: 'Something went wrong!',
-            source: 'test-webhook-zapping',
-            fulfillmentMessages: [mediaobject:new MediaObject({
-              name: 'RTL',
-              url: 'http://shoutcast.rtl.it:3010/;mp3',
-              image: new Image({
-                url: 'http://zappingradioapp.com/images/italia/rtl-102-5.png',
-                alt: 'Media icon',
-              })
-            })]
-        });*/
 
 
 });
@@ -38,6 +37,10 @@ server.post('/test', (req, res) => {
 server.listen((process.env.PORT || 8000), () => {
     console.log("Server is up and running...");
 });
+
+
+
+
 
 
 
