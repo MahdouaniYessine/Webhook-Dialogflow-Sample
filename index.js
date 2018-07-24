@@ -21,7 +21,7 @@ server.post('/test', (req, res) => {
     "google": {
       "expectUserResponse": true,
       "richResponse": {
-        "items": [{  "simpleResponse": {  "textToSpeech": "Play Radio RTL"}},
+        "items": [{  "simpleResponse": {  "textToSpeech": "Play Radio RTL"}}
         ,{
               "mediaResponse": {
                 "mediaType": "AUDIO",
