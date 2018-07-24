@@ -18,11 +18,12 @@ server.post('/test', (req, res) => {
   var request = require('request');
   request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', form: {key:"rtl",action:6}},
                 function (error, response, body) {
-                  
+
     if (error) {
       return  res.json(error);
     }
-    return res.json(body);
+    var res["success"]=body["success"];
+    return res.json(res);
   });
 
   /*return res.json({
