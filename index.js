@@ -11,10 +11,14 @@ server.use(bodyParser.urlencoded({
 
 server.post('/test', (req, res) => {
 
+console.log('hook request');
+
         return res.json({
             speech: 'Something went wrong!',
             displayText: 'Something went wrong!',
-            source: 'Zapping Radio +'
+            data: [],
+            contextOut: [],
+            source: 'test'
         });
 
 });
