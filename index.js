@@ -14,12 +14,18 @@ server.use(bodyParser.urlencoded({
 server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
-
-const app = actionssdk()
-app.intent('test', (conv, input) => {
-  conv.ask(`I didn't understand. Can you tell me something else?`)
-})
-
+  return res.json({
+        fulfillmentText: 'Something went wrong!',
+        source: 'test-webhook-zapping',
+        fulfillmentMessages: [mediaobject:new MediaObject({
+          name: 'RTL',
+          url: 'http://shoutcast.rtl.it:3010/;mp3',
+          image: new Image({
+            url: 'http://zappingradioapp.com/images/italia/rtl-102-5.png',
+            alt: 'Media icon',
+          })
+        })]
+    });
 
       /*  return res.json({
             fulfillmentText: 'Something went wrong!',
