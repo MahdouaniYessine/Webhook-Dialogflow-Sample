@@ -14,8 +14,9 @@ server.use(bodyParser.urlencoded({
 server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
-  var formData = {key:'rtl',action:6}
-  request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', formData: formData}, function optionalCallback(err, httpResponse, body) {
+
+  var data = {key:'rtl',action:6}
+  request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', form: data}, function optionalCallback(err, httpResponse, body) {
     if (err) {
       return  err;
     }
