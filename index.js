@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {dialogflow,BasicCard,SimpleResponse,
   Image,Suggestions,MediaObject} = require('actions-on-google');
-  
+
 var request = require('request');
 
 const server = express();
@@ -15,21 +15,16 @@ server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
 
-
-  var radio_name='RTL';
-  var radio_image=url_backend+'/images/italia/rtl-102-5.png';
-  var radio_stream='http://shoutcast.rtl.it:3010/;mp3';
-
         return res.json({
             fulfillmentText: 'Something went wrong!',
-            source: 'test-webhook-zapping'
+            source: 'test-webhook-zapping',
             fulfillmentMessages: new MediaObject({
-              name: radio_name,
-              url: radio_stream,
+              name: 'RTL',
+              url: 'http://shoutcast.rtl.it:3010/;mp3',
               image: new Image({
-                url: radio_image,
+                url: 'http://zappingradioapp.com/images/italia/rtl-102-5.png',
                 alt: 'Media icon',
-              }),
+              })
             })
         });
 
