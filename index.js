@@ -1,35 +1,14 @@
 "use strict";
 
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
+const { dialogflow } = require('actions-on-google');
 
-const restService = express();
+const app = dialogflow();
 
-restService.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
-
-restService.use(bodyParser.json());
-
-restService.post("/test", function(req, res) {
-  var speech =
-    req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.any
-      ? req.body.result.parameters.any
-      : "Seems like some problem. Speak again.";
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    data: [],
-    contextOut: [],
-    source: "Zapping Radio +"
-  });
+app.intent('test', conv => {
+  conv.ask('really?');
 });
 
 
-restService.listen(process.env.PORT || 8000, function() {
-  console.log("Server up and listening");
-});
+express().use(bodyParser.json(), app).listen(3000);
