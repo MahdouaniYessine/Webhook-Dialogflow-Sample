@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const {dialogflow,BasicCard,SimpleResponse,
   Image,Suggestions,MediaObject,actionssdk} = require('actions-on-google');
 
-var request = require('request');
+
 
 const server = express();
 server.use(bodyParser.urlencoded({
@@ -15,12 +15,15 @@ server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
 
-  var data = {key:'rtl',action:6}
-  request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', form: data}, function optionalCallback(err, httpResponse, body) {
-    if (err) {
-      return  err;
+  var request = require('request');
+  request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', form: {key:"rtl",action:6}},
+                function (error, response, body) {
+                  console.log(body);
+    if (error) {
+      return  res.json(error);
     }
-  return res.json(res);
+  return res.json(response);
+
   });
 
   /*return res.json({
