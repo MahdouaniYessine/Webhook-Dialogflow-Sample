@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {dialogflow,BasicCard,SimpleResponse,
-  Image,Suggestions,MediaObject,actionssdk} = require('actions-on-google');
+  Image,Suggestions,MediaObject} = require('actions-on-google');
 
 
 
@@ -15,7 +15,7 @@ server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
 
-return res.json({fulfillmentText:req.body.queryResult.parameters.any})
+return res.json({fulfillmentText:req.body.queryResult.parameters.any+" "+eq.body.queryResult.languageCode})
 
 });
 
