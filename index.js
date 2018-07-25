@@ -18,8 +18,8 @@ server.post('/test', (req, res) => {
   var notFoundResponseEN="I wasn't able to find the requested radio. Please, try to articulate the radio's name or ask for another station. So, which radio station would you like to listen to?";
 
   var request = require('request');
-  return res.json({fulfillmentText:req.body.result.parameters})
-  request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', form: {key:"rtl",action:6}},
+  return res.json({fulfillmentText:req.body.result.parameters});
+  /*request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', form: {key:"rtl",action:6}},
                 function (error, response, body) {
 
                   if (!error && response.statusCode == 200) {
@@ -65,7 +65,7 @@ server.post('/test', (req, res) => {
                       return res.json({fulfillmentText:notFoundResponseEN})
                     }
   });
-
+*/
 });
 
 server.listen((process.env.PORT || 8000), () => {
