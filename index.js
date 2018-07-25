@@ -15,7 +15,7 @@ server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
 
-return res.json({fulfillmentText:req.body.queryResult.parameters.any+" "+req.body.queryResult.languageCode})
+return res.json({fulfillmentText:req.body.queryResult.parameters.any+" "+req.body.queryResult.languageCode.substr(0,2)})
 
 });
 
