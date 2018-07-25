@@ -15,56 +15,7 @@ server.use(bodyParser.json());
 
 server.post('/test', (req, res) => {
 
-  var notFoundResponseEN="I wasn't able to find the requested radio. Please, try to articulate the radio's name or ask for another station. So, which radio station would you like to listen to?";
-
-  var request = require('request');
-
-  request.post({url:'http://zappingradioapp.com/mobileapp/zappingapi.php', form: {key:req.body.queryResult.parameters.any,action:6}},
-                function (error, response, body) {
-
-                  if (!error && response.statusCode == 200) {
-                      var result = JSON.parse(body);
-                      if(result["success"]==1){
-                        return res.json({
-                        source: 'test-webhook-zapping',
-                        "payload": {
-                          "google": {
-                            "expectUserResponse": true,
-                            "richResponse": {
-                              "items": [{  "simpleResponse": {  "textToSpeech": "Play Radio "+result["name"]}}
-                              ,{"mediaResponse": {
-                                  "mediaType": "AUDIO",
-                                      "mediaObjects": [
-                                        {
-                                          "name": result["name"],
-                                          "largeImage": {
-                                            "url": "http://www.zappingradioapp.com"+result["image"],
-                                            "accessibilityText": "Media icon"
-                                          },
-                                          "contentUrl": result["stream"]
-                                        }
-                                      ]
-                                    }
-                                  }
-                              ],
-                                "suggestions": [
-                                  {
-                                    "title": "Pause Radio"
-                                  }
-                                ]
-                            }
-                          }
-                        }
-                      });
-
-                      }else{
-                        return res.json({fulfillmentText:notFoundResponseEN})
-                      }
-                    }
-                    else{
-                      return res.json({fulfillmentText:notFoundResponseEN})
-                    }
-  });
+return res.json({fulfillmentText:req.body.queryResult.parameters.any})
 
 });
 
